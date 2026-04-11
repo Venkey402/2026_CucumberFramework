@@ -30,7 +30,7 @@
         <version>2.22.0</version>
         <configuration>
           <systemPropertyVariables>
-            <yearsOfExperience>yearsOfExperience</yearsOfExperience>
+            <browser>browser</browser>
           </systemPropertyVariables>
           <suiteXmlFiles>
             <suiteXmlFile>testNG.xml</suiteXmlFile>
