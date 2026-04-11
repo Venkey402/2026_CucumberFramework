@@ -27,6 +27,4 @@ public class TestContext {
             driver = new ChromeDriver();
         }
     }
-
-
 }
