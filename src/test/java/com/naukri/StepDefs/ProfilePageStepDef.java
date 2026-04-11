@@ -1,5 +1,6 @@
 package com.naukri.StepDefs;
 
+import com.naukri.PageObjects.HomePage;
 import com.naukri.PageObjects.ProfilePage;
 import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
@@ -14,14 +15,16 @@ public class ProfilePageStepDef {
     String resumeHeadline=readConfig.getResumeHeadline();
     TestContext testContext;
     ProfilePage profilePage;
+    HomePage homePage;
 
     public ProfilePageStepDef(TestContext testContext) {
         this.testContext=testContext;
         profilePage = new ProfilePage(testContext.driver);
+        homePage = new HomePage(testContext.driver);
     }
     @When("users updates profile summary")
     public void users_updates_profile_summary() {
-
+        homePage.clickViewProfile();
         profilePage.clickProfileEdit();
         String currentResumeText=profilePage.getResumeHeadline();
         if(currentResumeText.equalsIgnoreCase(resumeHeadline)) {
