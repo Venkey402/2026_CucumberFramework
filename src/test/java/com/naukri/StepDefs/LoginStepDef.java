@@ -1,19 +1,33 @@
 package com.naukri.StepDefs;
 
 import com.naukri.PageObjects.LoginPage;
+import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class LoginStepDef {
 
-    String resumeHeadline="13.5 Years experience in automation testing using selenium with java, playwright manual testing and API testing using RestAssured";
+    private static final Logger log = LoggerFactory.getLogger(LoginStepDef.class);
+    ReadConfig readConfig = new ReadConfig();
+
+    String resumeHeadline=readConfig.getResumeHeadline();
+    String email=readConfig.getEmail();
+    String pass=readConfig.getPassword();
+    String url=readConfig.getUrl();
+
+    public LoginStepDef() throws IOException {
+    }
+
     @Given("user logins into naukri application")
     public void user_logins_into_naukri_application() throws InterruptedException {
 
@@ -23,13 +37,14 @@ public class LoginStepDef {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        driver.get("https://www.naukri.com/");
+        driver.get(url);
 
-        driver.findElement(By.cssSelector("#login_Layer")).click();
-        driver.findElement(By.cssSelector("[placeholder='Enter your active Email ID / Username']")).sendKeys("venkey402@gmail.com");
-        driver.findElement(By.cssSelector("[placeholder='Enter your password']")).sendKeys("9030196907");
-        driver.findElement(By.cssSelector(".loginButton")).click();
+        LoginPage loginPage = new LoginPage(driver);
 
+        loginPage.clickOnLoginLink();
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(pass);
+        loginPage.clickOnLogin();
 
         // Beginning of  Home page
 
