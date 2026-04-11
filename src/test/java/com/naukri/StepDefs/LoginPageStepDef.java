@@ -6,8 +6,6 @@ import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
-
-import java.io.IOException;
 import java.time.Duration;
 
 public class LoginPageStepDef {

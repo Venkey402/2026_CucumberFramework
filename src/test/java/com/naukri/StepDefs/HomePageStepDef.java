@@ -3,7 +3,6 @@ package com.naukri.StepDefs;
 import com.naukri.PageObjects.HomePage;
 import com.naukri.TestContext.TestContext;
 import io.cucumber.java.en.When;
-import java.io.IOException;
 
 public class HomePageStepDef {
 
