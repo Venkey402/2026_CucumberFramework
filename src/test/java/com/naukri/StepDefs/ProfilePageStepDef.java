@@ -35,7 +35,7 @@ public class ProfilePageStepDef {
         }
         profilePage.clickSave();
     }
-    @Then("verify user resume is updated")
+    @Then("verify profile summary is updated")
     public void user_resume_is_updated() {
         Assert.assertTrue(profilePage.isResumeHeadlineSaved());
     }
