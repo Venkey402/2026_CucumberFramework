@@ -16,7 +16,6 @@ public class LoginPageStepDef {
     HomePage homePage;
     TestContext testContext;
 
-
     public LoginPageStepDef(TestContext testContext){
         this.testContext=testContext;
         loginPage = new LoginPage(testContext.driver);
