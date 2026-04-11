@@ -18,6 +18,9 @@ public class TestContext {
             } else if (browser.equalsIgnoreCase("edge")) {
                 System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + "/src/test/resources/Drivers/msedgedriver.exe");
                 driver = new EdgeDriver();
+            } else {
+                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/Drivers/chromedriver.exe");
+                driver = new ChromeDriver();
             }
         }catch (Exception e){
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/Drivers/chromedriver.exe");

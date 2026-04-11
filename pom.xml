@@ -30,7 +30,8 @@
         <version>2.22.0</version>
         <configuration>
           <systemPropertyVariables>
-            <browser>browser</browser>
+            <!--suppress UnresolvedMavenProperty -->
+            <browser>${browser}</browser>
           </systemPropertyVariables>
           <suiteXmlFiles>
             <suiteXmlFile>testNG.xml</suiteXmlFile>

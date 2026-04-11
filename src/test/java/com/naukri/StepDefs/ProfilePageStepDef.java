@@ -4,6 +4,7 @@ import com.naukri.PageObjects.HomePage;
 import com.naukri.PageObjects.ProfilePage;
 import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -36,7 +37,15 @@ public class ProfilePageStepDef {
         profilePage.clickSave();
     }
     @Then("verify profile summary is updated")
-    public void user_resume_is_updated() {
+    public void verify_profile_summary_is_updated() {
         Assert.assertTrue(profilePage.isResumeHeadlineSaved());
+    }
+
+    @And("users uploads resume")
+    public void users_Uploads_Resume() {
+    }
+
+    @Then("verify resume is uploaded")
+    public void verifyResumeIsUploaded() {
     }
 }
