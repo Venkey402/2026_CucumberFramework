@@ -30,6 +30,9 @@ public class HomePage {
     {
         viewProfilelnk.click();
     }
-
+    public boolean verifyCurrentUrlContainsHomepage()
+    {
+        return driver.getCurrentUrl().contains("homepage");
+    }
 
 }
