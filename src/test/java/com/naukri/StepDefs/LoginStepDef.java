@@ -3,6 +3,7 @@ package com.naukri.StepDefs;
 import com.naukri.PageObjects.HomePage;
 import com.naukri.PageObjects.LoginPage;
 import com.naukri.PageObjects.ProfilePage;
+import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
@@ -26,24 +27,28 @@ public class LoginStepDef {
     String email=readConfig.getEmail();
     String pass=readConfig.getPassword();
     String url=readConfig.getUrl();
+    LoginPage loginPage;
+    HomePage homePage;
+    ProfilePage profilePage;
+    WebDriver driver;
 
-    public LoginStepDef() throws IOException {
+    public LoginStepDef(TestContext testContext) throws IOException {
+        driver=testContext.driver;
     }
 
     @Given("user logins into naukri application")
     public void user_logins_into_naukri_application() throws InterruptedException {
 
-        System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/src/test/resources/Drivers/chromedriver.exe");
 
-        WebDriver driver = new ChromeDriver();
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.get(url);
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        profilePage = new ProfilePage(driver);
 
         loginPage.clickOnLoginLink();
         loginPage.enterEmail(email);
