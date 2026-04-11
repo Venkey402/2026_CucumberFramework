@@ -6,14 +6,12 @@ import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
-import java.time.Duration;
 
 public class LoginPageStepDef {
 
     ReadConfig readConfig = new ReadConfig();
     String email=readConfig.getEmail();
     String pass=readConfig.getPassword();
-    String url=readConfig.getUrl();
     LoginPage loginPage;
     HomePage homePage;
     TestContext testContext;
