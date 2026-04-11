@@ -38,14 +38,10 @@ public class LoginStepDef {
 
     @Given("user logins into naukri application")
     public void user_logins_into_naukri_application() throws InterruptedException {
-
-
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.get(url);
-
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         profilePage = new ProfilePage(driver);

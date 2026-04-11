@@ -7,10 +7,14 @@ import java.util.Properties;
 
 public class ReadConfig {
     Properties pro;
-    public ReadConfig() throws IOException {
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/src/test/resources/Config/config.properties");
-        pro= new Properties();
-        pro.load(fis);
+    public ReadConfig() {
+        try {
+            FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/Config/config.properties");
+            pro = new Properties();
+            pro.load(fis);
+        } catch (Exception e){
+            e.printStackTrace();
+    }
     }
 
     public String getUrl()
