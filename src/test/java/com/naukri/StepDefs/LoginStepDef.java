@@ -1,6 +1,8 @@
 package com.naukri.StepDefs;
 
+import com.naukri.PageObjects.HomePage;
 import com.naukri.PageObjects.LoginPage;
+import com.naukri.PageObjects.ProfilePage;
 import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
@@ -40,36 +42,26 @@ public class LoginStepDef {
         driver.get(url);
 
         LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
 
         loginPage.clickOnLoginLink();
         loginPage.enterEmail(email);
         loginPage.enterPassword(pass);
         loginPage.clickOnLogin();
-
-        // Beginning of  Home page
-
         Thread.sleep(2000);
-        Assert.assertTrue(driver.getCurrentUrl().contains("https://www.naukri.com/mnjuser/homepage"));
-        Assert.assertTrue(driver.findElement(By.cssSelector("[title='Venkat Mamidi']")).isDisplayed());
-
-        driver.findElement(By.cssSelector("a[href='/mnjuser/profile']")).click();
-
-
-        //driver.findElement(By.cssSelector("[value='Update resume']")).sendKeys(System.getProperty("user.dir")+"/src/test/resources/Attachments/Venkatrao Mamidi.pdf");
-        //Thread.sleep(2000);
-
-        // Beginning of profile page
-        driver.findElement(By.cssSelector("#lazyResumeHead span.edit")).click();
-        String currentResumeText=driver.findElement(By.cssSelector("#resumeHeadlineTxt")).getText();
-        driver.findElement(By.cssSelector("#resumeHeadlineTxt")).clear();
+        homePage.isProfileDisplayed();
+        homePage.clickViewProfile();
+        profilePage.clickProfileEdit();
+        String currentResumeText=profilePage.getResumeHeadline();
         if(currentResumeText.equalsIgnoreCase(resumeHeadline)) {
-            driver.findElement(By.cssSelector("#resumeHeadlineTxt")).sendKeys(resumeHeadline+".");
+            profilePage.setResumeHeadline(resumeHeadline+".");
         }
         else {
-            driver.findElement(By.cssSelector("#resumeHeadlineTxt")).sendKeys(resumeHeadline);
+            profilePage.setResumeHeadline(resumeHeadline);
         }
-        driver.findElement(By.xpath("//button[text()='Save']")).click();
-        Assert.assertTrue(driver.findElement(By.xpath("//*[text()='Resume Headline has been successfully saved.']")).isDisplayed());
+        profilePage.clickSave();
+        Assert.assertTrue(profilePage.isResumeHeadlineSaved());
         driver.quit();
     }
     @When("user uploads resume")
