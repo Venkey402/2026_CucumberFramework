@@ -27,17 +27,11 @@ public class LoginPageStepDef {
 
     @Given("user logins into naukri application")
     public void user_logins_into_naukri_application() throws InterruptedException {
-        testContext.driver.manage().window().maximize();
-        testContext.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        testContext.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        testContext.driver.get(url);
-
         loginPage.clickOnLoginLink();
         loginPage.enterEmail(email);
         loginPage.enterPassword(pass);
         loginPage.clickOnLogin();
         Thread.sleep(2000);
-
         Assert.assertTrue(homePage.isProfileDisplayed());
     }
 }
