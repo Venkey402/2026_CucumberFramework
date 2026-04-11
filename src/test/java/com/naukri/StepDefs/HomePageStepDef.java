@@ -10,7 +10,7 @@ public class HomePageStepDef {
     HomePage homePage;
     TestContext testContext;
 
-    public HomePageStepDef(TestContext testContext) throws IOException {
+    public HomePageStepDef(TestContext testContext) {
         this.testContext=testContext;
         homePage = new HomePage(testContext.driver);
     }

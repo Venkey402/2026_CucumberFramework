@@ -21,7 +21,7 @@ public class LoginPageStepDef {
     TestContext testContext;
 
 
-    public LoginPageStepDef(TestContext testContext) throws IOException {
+    public LoginPageStepDef(TestContext testContext){
         this.testContext=testContext;
         loginPage = new LoginPage(testContext.driver);
         homePage = new HomePage(testContext.driver);
