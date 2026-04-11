@@ -65,16 +65,18 @@ public class LoginStepDef {
         Assert.assertTrue(profilePage.isResumeHeadlineSaved());
         driver.quit();
     }
-    @When("user uploads resume")
-    public void user_uploads_resume() {
-        System.out.println("user logins into naukri application");
-    }
+
     @When("users updates profile summary")
     public void users_updates_profile_summary() {
         System.out.println("user logins into naukri application");
     }
     @Then("user resume is updated")
     public void user_resume_is_updated() {
+        System.out.println("user logins into naukri application");
+    }
+
+    @When("verify user lands on home page")
+    public void verifyUserLandsOnHomePage() {
         System.out.println("user logins into naukri application");
     }
 }
