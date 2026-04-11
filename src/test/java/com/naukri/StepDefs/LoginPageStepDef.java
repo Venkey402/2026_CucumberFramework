@@ -49,17 +49,5 @@ public class LoginPageStepDef {
         loginPage.clickOnLogin();
         Thread.sleep(2000);
         homePage.isProfileDisplayed();
-        homePage.clickViewProfile();
-        profilePage.clickProfileEdit();
-        String currentResumeText=profilePage.getResumeHeadline();
-        if(currentResumeText.equalsIgnoreCase(resumeHeadline)) {
-            profilePage.setResumeHeadline(resumeHeadline+".");
-        }
-        else {
-            profilePage.setResumeHeadline(resumeHeadline);
-        }
-        profilePage.clickSave();
-        Assert.assertTrue(profilePage.isResumeHeadlineSaved());
-        testContext.driver.quit();
     }
 }

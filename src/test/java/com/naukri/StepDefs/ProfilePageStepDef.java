@@ -1,20 +1,13 @@
 package com.naukri.StepDefs;
 
-import com.naukri.PageObjects.HomePage;
-import com.naukri.PageObjects.LoginPage;
 import com.naukri.PageObjects.ProfilePage;
 import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-
-import java.io.IOException;
-import java.time.Duration;
 
 public class ProfilePageStepDef {
 
@@ -22,23 +15,28 @@ public class ProfilePageStepDef {
     ReadConfig readConfig = new ReadConfig();
 
     String resumeHeadline=readConfig.getResumeHeadline();
-    String email=readConfig.getEmail();
-    String pass=readConfig.getPassword();
-    String url=readConfig.getUrl();
-    LoginPage loginPage;
-    HomePage homePage;
+    TestContext testContext;
     ProfilePage profilePage;
-    WebDriver driver;
 
-    public ProfilePageStepDef(TestContext testContext) throws IOException {
-        driver=testContext.driver;
+    public ProfilePageStepDef(TestContext testContext) {
+        this.testContext=testContext;
+        profilePage = new ProfilePage(testContext.driver);
     }
     @When("users updates profile summary")
     public void users_updates_profile_summary() {
-        System.out.println("user logins into naukri application");
+
+        profilePage.clickProfileEdit();
+        String currentResumeText=profilePage.getResumeHeadline();
+        if(currentResumeText.equalsIgnoreCase(resumeHeadline)) {
+            profilePage.setResumeHeadline(resumeHeadline+".");
+        }
+        else {
+            profilePage.setResumeHeadline(resumeHeadline);
+        }
+        profilePage.clickSave();
     }
     @Then("verify user resume is updated")
     public void user_resume_is_updated() {
-        System.out.println("user logins into naukri application");
+        Assert.assertTrue(profilePage.isResumeHeadlineSaved());
     }
 }
