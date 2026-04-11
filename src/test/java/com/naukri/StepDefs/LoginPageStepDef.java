@@ -18,14 +18,11 @@ public class LoginPageStepDef {
 
     private static final Logger log = LoggerFactory.getLogger(LoginPageStepDef.class);
     ReadConfig readConfig = new ReadConfig();
-
-    String resumeHeadline=readConfig.getResumeHeadline();
     String email=readConfig.getEmail();
     String pass=readConfig.getPassword();
     String url=readConfig.getUrl();
     LoginPage loginPage;
     HomePage homePage;
-    ProfilePage profilePage;
     TestContext testContext;
 
 
