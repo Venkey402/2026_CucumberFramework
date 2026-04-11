@@ -16,11 +16,11 @@ public class HomePageStepDef {
 
     public HomePageStepDef(TestContext testContext) throws IOException {
         this.testContext=testContext;
+        homePage = new HomePage(testContext.driver);
     }
 
     @When("verify user lands on home page")
     public void verifyUserLandsOnHomePage() {
-        HomePage homePage = new HomePage(testContext.driver);
         homePage.clickViewProfile();
     }
 }

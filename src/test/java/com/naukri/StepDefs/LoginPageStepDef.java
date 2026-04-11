@@ -31,6 +31,8 @@ public class LoginPageStepDef {
 
     public LoginPageStepDef(TestContext testContext) throws IOException {
         this.testContext=testContext;
+        loginPage = new LoginPage(testContext.driver);
+        homePage = new HomePage(testContext.driver);
     }
 
     @Given("user logins into naukri application")
@@ -39,9 +41,6 @@ public class LoginPageStepDef {
         testContext.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         testContext.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         testContext.driver.get(url);
-        loginPage = new LoginPage(testContext.driver);
-        homePage = new HomePage(testContext.driver);
-        profilePage = new ProfilePage(testContext.driver);
 
         loginPage.clickOnLoginLink();
         loginPage.enterEmail(email);
