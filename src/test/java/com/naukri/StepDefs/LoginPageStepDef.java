@@ -2,13 +2,9 @@ package com.naukri.StepDefs;
 
 import com.naukri.PageObjects.HomePage;
 import com.naukri.PageObjects.LoginPage;
-import com.naukri.PageObjects.ProfilePage;
 import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -16,7 +12,6 @@ import java.time.Duration;
 
 public class LoginPageStepDef {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginPageStepDef.class);
     ReadConfig readConfig = new ReadConfig();
     String email=readConfig.getEmail();
     String pass=readConfig.getPassword();
@@ -44,6 +39,7 @@ public class LoginPageStepDef {
         loginPage.enterPassword(pass);
         loginPage.clickOnLogin();
         Thread.sleep(2000);
-        homePage.isProfileDisplayed();
+
+        Assert.assertTrue(homePage.isProfileDisplayed());
     }
 }

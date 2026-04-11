@@ -9,10 +9,8 @@ public class TestContext {
 
     public TestContext()
     {
-        if(driver==null) {
-            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/Drivers/chromedriver.exe");
-            driver = new ChromeDriver();
-        }
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/Drivers/chromedriver.exe");
+        driver = new ChromeDriver();
     }
 
 
