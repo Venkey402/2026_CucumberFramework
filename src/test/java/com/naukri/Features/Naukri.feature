@@ -4,4 +4,4 @@ Feature: Upload resume into Naukri.com
     Given user logins into naukri application
     When verify user lands on home page
     And users updates profile summary
-    Then user resume is updated
+    Then verify user resume is updated

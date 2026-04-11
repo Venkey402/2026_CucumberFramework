@@ -6,11 +6,7 @@ import com.naukri.PageObjects.ProfilePage;
 import com.naukri.TestContext.TestContext;
 import com.naukri.Utilities.config.ReadConfig;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -18,9 +14,9 @@ import org.testng.Assert;
 import java.io.IOException;
 import java.time.Duration;
 
-public class LoginStepDef {
+public class LoginPageStepDef {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginStepDef.class);
+    private static final Logger log = LoggerFactory.getLogger(LoginPageStepDef.class);
     ReadConfig readConfig = new ReadConfig();
 
     String resumeHeadline=readConfig.getResumeHeadline();
@@ -30,21 +26,22 @@ public class LoginStepDef {
     LoginPage loginPage;
     HomePage homePage;
     ProfilePage profilePage;
-    WebDriver driver;
+    TestContext testContext;
 
-    public LoginStepDef(TestContext testContext) throws IOException {
-        driver=testContext.driver;
+
+    public LoginPageStepDef(TestContext testContext) throws IOException {
+        this.testContext=testContext;
     }
 
     @Given("user logins into naukri application")
     public void user_logins_into_naukri_application() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        driver.get(url);
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        profilePage = new ProfilePage(driver);
+        testContext.driver.manage().window().maximize();
+        testContext.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        testContext.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        testContext.driver.get(url);
+        loginPage = new LoginPage(testContext.driver);
+        homePage = new HomePage(testContext.driver);
+        profilePage = new ProfilePage(testContext.driver);
 
         loginPage.clickOnLoginLink();
         loginPage.enterEmail(email);
@@ -63,20 +60,6 @@ public class LoginStepDef {
         }
         profilePage.clickSave();
         Assert.assertTrue(profilePage.isResumeHeadlineSaved());
-        driver.quit();
-    }
-
-    @When("users updates profile summary")
-    public void users_updates_profile_summary() {
-        System.out.println("user logins into naukri application");
-    }
-    @Then("user resume is updated")
-    public void user_resume_is_updated() {
-        System.out.println("user logins into naukri application");
-    }
-
-    @When("verify user lands on home page")
-    public void verifyUserLandsOnHomePage() {
-        System.out.println("user logins into naukri application");
+        testContext.driver.quit();
     }
 }
