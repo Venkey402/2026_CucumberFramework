@@ -13,7 +13,7 @@ public class HomePage {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(css="[title='Venkat Mamidi']")
+    @FindBy(css="[title='Venkatarao Mamidi']")
     WebElement profileLbl;
 
     @FindBy(css="a[href='/mnjuser/profile']")
